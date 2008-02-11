@@ -1,0 +1,14 @@
+## Interface: 20300
+
+## Title: Buffet
+## Notes: Food/water macro generator
+## Author: Tekkub Stoutwrithe
+## Version: Alpha
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: delayed
+
+LibStub.lua
+tekIDmemo.lua
+
+Buffet.lua
