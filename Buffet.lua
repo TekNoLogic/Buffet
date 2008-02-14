@@ -50,8 +50,8 @@ local function scan()
 			local _, _, _, _, reqlvl = link and GetItemInfo(link)
 			if id and allitems[id] and (not reqlvl or reqlvl <= mylevel) then
 				local _, stack = GetContainerItemInfo(bag,slot)
-				for set,items in pairs(items) do
-					local thisbest, val = bests[set], items[id]
+				for set,setitems in pairs(items) do
+					local thisbest, val = bests[set], setitems[id]
 					if val and (not thisbest.val or (thisbest.val < val or thisbest.val == val and thisbest.stack > stack)) then
 						thisbest.id, thisbest.val, thisbest.stack = id, val, stack
 					end
