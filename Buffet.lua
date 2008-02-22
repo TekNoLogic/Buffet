@@ -30,10 +30,10 @@ local function edit(name, ooc, ic, shift)
 	local macroid = GetMacroIndexByName(name)
 	if not macroid then return end
 
-	local body = "#showtooltip\n"
-	if shift then body = body .. "/use [modifier:shift] item:"..shift.."\n" end
-	if ic then body = body .. "/use [combat] item:"..ic.."\n" end
-	body = body .. "/use item:"..(ooc or "6948")
+	local body = "#showtooltip\n\n/use "
+	if shift then body = body .. "[modifier:shift] item:"..shift.."; " end
+	if ic then body = body .. "[combat] item:"..ic.."; " end
+	body = body .. "item:"..(ooc or "6948")
 
 	EditMacro(macroid, name, 1, body, 1)
 end
