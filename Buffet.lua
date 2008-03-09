@@ -26,14 +26,16 @@ end
 for i,v in pairs(items) do bests[i], items[i] = {}, TableStuffer(string.split(" ,", v)) end
 
 
-local function edit(name, ooc, ic, shift)
+local function edit(name, food, pot, stone, shift)
 	local macroid = GetMacroIndexByName(name)
 	if not macroid then return end
 
-	local body = "#showtooltip\n\n/use "
+	local body = "#showtooltip\n/use "
 	if shift then body = body .. "[modifier:shift] item:"..shift.."; " end
-	if ic then body = body .. "[combat] item:"..ic.."; " end
-	body = body .. "item:"..(ooc or "6948")
+	if (pot and not stone) or (stone and not pot) then body = body .. "[combat] item:"..(pot or stone).."; " end
+	body = body .. (pot and stone and "[nocombat] " or "").."item:"..(food or "6948")
+
+	if pot and stone then body = body .. "\n/castsequence [combat] item:"..stone..", item:"..pot end
 
 	EditMacro(macroid, name, 1, body, 1)
 end
@@ -60,8 +62,8 @@ local function scan()
 		end
 	end
 
-	edit("AutoHP", bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hstone.id or bests.hppot.id, bests.bandage.id)
-	edit("AutoMP", bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mstone.id or bests.mppot.id)
+	edit("AutoHP", bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+	edit("AutoMP", bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
 	dirty = false
 end
 
