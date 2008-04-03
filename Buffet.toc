@@ -4,11 +4,17 @@
 ## Notes: Food/water macro generator
 ## Author: Tekkub Stoutwrithe
 ## Version: Alpha
+## X-Website: http://www.tekkub.net/
+## X-Email: tekkub-wow@googlegroups.com
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
 LibStub.lua
 tekIDmemo.lua
+tekKonfigAboutPanel.lua
+tekKonfigHeading.lua
+tekKonfigButton.lua
 
 Buffet.lua
+Config.lua

@@ -78,3 +78,5 @@ f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:RegisterEvent("BAG_UPDATE")
 
 scan()
+
+BUFFET_SCAN = scan
