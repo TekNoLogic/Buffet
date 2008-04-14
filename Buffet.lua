@@ -31,7 +31,7 @@ local function edit(name, food, pot, stone, shift)
 	if not macroid then return end
 
 	local body = "#showtooltip\n/use "
-	if shift then body = body .. "[mod:shift] item:"..shift.."; " end
+	if shift then body = body .. "[mod:shift,target=player] item:"..shift.."; " end
 	if (pot and not stone) or (stone and not pot) then body = body .. "[combat] item:"..(pot or stone).."; " end
 	body = body .. (pot and stone and "[nocombat] " or "").."item:"..(food or "6948")
 
