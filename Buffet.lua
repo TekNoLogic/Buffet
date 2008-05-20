@@ -76,6 +76,7 @@ end)
 f:RegisterEvent("PLAYER_LOGIN")
 f:RegisterEvent("PLAYER_REGEN_ENABLED")
 f:RegisterEvent("BAG_UPDATE")
+f:RegisterEvent("PLAYER_LEVEL_UP")
 
 scan()
 
