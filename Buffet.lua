@@ -49,8 +49,8 @@ local function scan()
 		for slot=1,GetContainerNumSlots(bag) do
 			local link = GetContainerItemLink(bag, slot)
 			local id = link and ids[link]
-			local _, _, _, _, reqlvl = link and GetItemInfo(link)
-			if id and allitems[id] and (not reqlvl or reqlvl <= mylevel) then
+			local reqlvl = link and select(5, GetItemInfo(link)) or 0
+			if id and allitems[id] and reqlvl <= mylevel then
 				local _, stack = GetContainerItemInfo(bag,slot)
 				for set,setitems in pairs(items) do
 					local thisbest, val = bests[set], setitems[id]
