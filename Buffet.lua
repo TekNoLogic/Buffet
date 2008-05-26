@@ -1,4 +1,9 @@
 
+----------------------
+--      Locals      --
+----------------------
+
+local defaults = {macro = "#showtooltip\n%MACRO%"}
 local ids, bests, allitems, items, dirty = LibStub("tekIDmemo"), {}, {}, {
 	bandage = "2581:114,8545:1104,21991:3400,14530:2000,6451:640,3531:301,1251:66,8544:800,21990:2800,14529:1360,6450:400,3530:161",
 	hstone = "14894:600,25881:400,23329:24,25883:1250,25880:180,15723:1400,11951:800,25882:640,25498:96,11952:425,11951:800,5509:500,5510:800,5511:250,5512:100,9421:1200,19004:110,19005:120,19006:275,19007:300,19008:550,19009:600,19010:880,19011:960,19012:1320,19013:1440,22103:2080,22104:2288,22105:2496",
@@ -14,6 +19,10 @@ local ids, bests, allitems, items, dirty = LibStub("tekIDmemo"), {}, {}, {
 }
 
 
+------------------------------
+--      Util Functions      --
+------------------------------
+
 local function TableStuffer(...)
 	local t = {}
 	for i=1,select("#", ...) do
@@ -26,22 +35,61 @@ end
 for i,v in pairs(items) do bests[i], items[i] = {}, TableStuffer(string.split(" ,", v)) end
 
 
-local function edit(name, food, pot, stone, shift)
-	local macroid = GetMacroIndexByName(name)
-	if not macroid then return end
+-----------------------------
+--      Event Handler      --
+-----------------------------
 
-	local body = "#showtooltip\n/use "
-	if shift then body = body .. "[mod:shift,target=player] item:"..shift.."; " end
-	if (pot and not stone) or (stone and not pot) then body = body .. "[combat] item:"..(pot or stone).."; " end
-	body = body .. (pot and stone and "[nocombat] " or "").."item:"..(food or "6948")
+Buffet = CreateFrame("frame")
+Buffet:SetScript("OnEvent", function(self, event, ...) if self[event] then return self[event](self, event, ...) end end)
+Buffet:RegisterEvent("ADDON_LOADED")
+function Buffet:Print(...) ChatFrame1:AddMessage(string.join(" ", "|cFF33FF99Buffet|r:", ...)) end
 
-	if pot and stone then body = body .. "\n/castsequence [combat,nomod] reset=combat item:"..stone..", item:"..pot end
 
-	EditMacro(macroid, name, 1, body, 1)
+function Buffet:ADDON_LOADED(event, addon)
+	if addon ~= "Buffet" then return end
+
+	BuffetDB = setmetatable(BuffetDB or {}, {__index = defaults})
+	self.db = BuffetDB
+
+	self:UnregisterEvent("ADDON_LOADED")
+	self.ADDON_LOADED = nil
+
+	if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
 end
 
 
-local function scan()
+function Buffet:PLAYER_LOGIN()
+	self:RegisterEvent("PLAYER_LOGOUT")
+
+	self:RegisterEvent("PLAYER_REGEN_ENABLED")
+	self:RegisterEvent("BAG_UPDATE")
+	self:RegisterEvent("PLAYER_LEVEL_UP")
+
+	self:Scan()
+
+	self:UnregisterEvent("PLAYER_LOGIN")
+	self.PLAYER_LOGIN = nil
+end
+
+
+function Buffet:PLAYER_LOGOUT()
+	for i,v in pairs(defaults) do if self.db[i] == v then self.db[i] = nil end end
+end
+
+
+function Buffet:PLAYER_REGEN_ENABLED()
+	if dirty then self:Scan() end
+end
+
+
+function Buffet:BAG_UPDATE()
+	dirty = true
+	if not InCombatLockdown() then self:Scan() end
+end
+Buffet.PLAYER_LEVEL_UP = Buffet.BAG_UPDATE
+
+
+function Buffet:Scan()
 	for _,t in pairs(bests) do for i in pairs(t) do t[i] = nil end end
 	local mylevel = UnitLevel("player")
 
@@ -62,22 +110,24 @@ local function scan()
 		end
 	end
 
-	edit("AutoHP", bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
-	edit("AutoMP", bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+	self:Edit("AutoHP", bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+	self:Edit("AutoMP", bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
 	dirty = false
 end
 
 
-local f = CreateFrame("Frame")
-f:SetScript("OnEvent", function(self, event, ...)
-	if event ~= "PLAYER_REGEN_ENABLED" then dirty = true end
-	if dirty and not InCombatLockdown() then scan() end
-end)
-f:RegisterEvent("PLAYER_LOGIN")
-f:RegisterEvent("PLAYER_REGEN_ENABLED")
-f:RegisterEvent("BAG_UPDATE")
-f:RegisterEvent("PLAYER_LEVEL_UP")
+function Buffet:Edit(name, food, pot, stone, shift)
+	local macroid = GetMacroIndexByName(name)
+	if not macroid then return end
 
-scan()
+	local body = "/use "
+	if shift then body = body .. "[mod:shift,target=player] item:"..shift.."; " end
+	if (pot and not stone) or (stone and not pot) then body = body .. "[combat] item:"..(pot or stone).."; " end
+	body = body .. (pot and stone and "[nocombat] " or "").."item:"..(food or "6948")
 
-BUFFET_SCAN = scan
+	if pot and stone then body = body .. "\n/castsequence [combat,nomod] reset=combat item:"..stone..", item:"..pot end
+
+	EditMacro(macroid, name, 1, self.db.macro:gsub("%%MACRO%%", body), 1)
+end
+
+

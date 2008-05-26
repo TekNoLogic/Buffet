@@ -7,6 +7,8 @@
 ## X-Website: http://www.tekkub.net/
 ## X-Email: tekkub-wow@googlegroups.com
 
+## SavedVariablesPerCharacter: BuffetDB
+
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
 
