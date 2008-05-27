@@ -30,39 +30,70 @@ frame:SetScript("OnShow", function()
 	mpbutt.name = "AutoMP"
 	mpbutt:SetScript("OnClick", OnClick)
 
-	local macrolabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-	macrolabel:SetText("Macro")
-	macrolabel:SetPoint("TOPLEFT", hpbutt, "BOTTOMLEFT", 5, -GAP)
+	local hpmacrolabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+	hpmacrolabel:SetText("HP Macro")
+	hpmacrolabel:SetPoint("TOPLEFT", hpbutt, "BOTTOMLEFT", 5, -GAP)
 
-	local editbox = CreateFrame("EditBox", nil, frame)
-	editbox:SetPoint("TOP", macrolabel, "BOTTOM", 0, -5)
-	editbox:SetPoint("LEFT", EDGEGAP/3, 0)
-	editbox:SetPoint("BOTTOMRIGHT", -EDGEGAP/3, EDGEGAP/3)
-	editbox:SetFontObject(GameFontHighlight)
-	editbox:SetTextInsets(8,8,8,8)
-	editbox:SetBackdrop({
-		bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
-		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-		edgeSize = 16,
-		insets = {left = 4, right = 4, top = 4, bottom = 4}
-	})
-	editbox:SetBackdropColor(.1,.1,.1,.3)
-	editbox:SetMultiLine(true)
-	editbox:SetAutoFocus(false)
-	editbox:SetText(Buffet.db.macro)
-	editbox:SetScript("OnEditFocusLost", function()
-		local newmacro = editbox:GetText()
+	local YOFFSET = (hpmacrolabel:GetTop() - frame:GetBottom() - EDGEGAP/3)/2
+	local backdrop = {
+		bgFile = "Interface\\ChatFrame\\ChatFrameBackground", insets = {left = 4, right = 4, top = 4, bottom = 4},
+		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", edgeSize = 16
+	}
+
+	local hpeditbox = CreateFrame("EditBox", nil, frame)
+	hpeditbox:SetPoint("TOP", hpmacrolabel, "BOTTOM", 0, -5)
+	hpeditbox:SetPoint("LEFT", EDGEGAP/3, 0)
+	hpeditbox:SetPoint("BOTTOMRIGHT", -EDGEGAP/3, YOFFSET + EDGEGAP/3)
+	hpeditbox:SetFontObject(GameFontHighlight)
+	hpeditbox:SetTextInsets(8,8,8,8)
+	hpeditbox:SetBackdrop(backdrop)
+	hpeditbox:SetBackdropColor(.1,.1,.1,.3)
+	hpeditbox:SetMultiLine(true)
+	hpeditbox:SetAutoFocus(false)
+	hpeditbox:SetText(Buffet.db.macroHP)
+	hpeditbox:SetScript("OnEditFocusLost", function()
+		local newmacro = hpeditbox:GetText()
 		if not newmacro:find("%%MACRO%%") then
 			Buffet:Print('Macro text must contain the string "%MACRO%".')
 		else
-			Buffet.db.macro = newmacro
+			Buffet.db.macroHP = newmacro
 			Buffet:BAG_UPDATE()
 		end
 	end)
-	editbox:SetScript("OnEscapePressed", editbox.ClearFocus)
-	editbox.tiptext = 'Customize the macro text.  Must include the string "%MACRO%", which is replaced with the items to be used.  This setting is saved on a per-char basis.'
-	editbox:SetScript("OnEnter", mpbutt:GetScript("OnEnter"))
-	editbox:SetScript("OnLeave", mpbutt:GetScript("OnLeave"))
+	hpeditbox:SetScript("OnEscapePressed", hpeditbox.ClearFocus)
+	hpeditbox.tiptext = 'Customize the macro text.  Must include the string "%MACRO%", which is replaced with the items to be used.  This setting is saved on a per-char basis.'
+	hpeditbox:SetScript("OnEnter", mpbutt:GetScript("OnEnter"))
+	hpeditbox:SetScript("OnLeave", mpbutt:GetScript("OnLeave"))
+
+	local mpmacrolabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+	mpmacrolabel:SetText("MP Macro")
+	mpmacrolabel:SetPoint("TOP", hpeditbox, "BOTTOM", 0, -GAP)
+	mpmacrolabel:SetPoint("LEFT", hpmacrolabel, "LEFT")
+
+	local mpeditbox = CreateFrame("EditBox", nil, frame)
+	mpeditbox:SetPoint("TOP", mpmacrolabel, "BOTTOM", 0, -5)
+	mpeditbox:SetPoint("LEFT", EDGEGAP/3, 0)
+	mpeditbox:SetPoint("BOTTOMRIGHT", -EDGEGAP/3, EDGEGAP/3)
+	mpeditbox:SetFontObject(GameFontHighlight)
+	mpeditbox:SetTextInsets(8,8,8,8)
+	mpeditbox:SetBackdrop(backdrop)
+	mpeditbox:SetBackdropColor(.1,.1,.1,.3)
+	mpeditbox:SetMultiLine(true)
+	mpeditbox:SetAutoFocus(false)
+	mpeditbox:SetText(Buffet.db.macroMP)
+	mpeditbox:SetScript("OnEditFocusLost", function()
+		local newmacro = mpeditbox:GetText()
+		if not newmacro:find("%%MACRO%%") then
+			Buffet:Print('Macro text must contain the string "%MACRO%".')
+		else
+			Buffet.db.macroMP = newmacro
+			Buffet:BAG_UPDATE()
+		end
+	end)
+	mpeditbox:SetScript("OnEscapePressed", mpeditbox.ClearFocus)
+	mpeditbox.tiptext = hpeditbox.tiptext
+	mpeditbox:SetScript("OnEnter", mpbutt:GetScript("OnEnter"))
+	mpeditbox:SetScript("OnLeave", mpbutt:GetScript("OnLeave"))
 
 	local function Refresh(self)
 		if GetMacroIndexByName("AutoHP") == 0 then hpbutt:Enable() else hpbutt:Disable() end

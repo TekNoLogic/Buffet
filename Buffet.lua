@@ -3,7 +3,7 @@
 --      Locals      --
 ----------------------
 
-local defaults = {macro = "#showtooltip\n%MACRO%"}
+local defaults = {macroHP = "#showtooltip\n%MACRO%", macroMP = "#showtooltip\n%MACRO%"}
 local ids, bests, allitems, items, dirty = LibStub("tekIDmemo"), {}, {}, {
 	bandage = "2581:114,8545:1104,21991:3400,14530:2000,6451:640,3531:301,1251:66,8544:800,21990:2800,14529:1360,6450:400,3530:161",
 	hstone = "14894:600,25881:400,23329:24,25883:1250,25880:180,15723:1400,11951:800,25882:640,25498:96,11952:425,11951:800,5509:500,5510:800,5511:250,5512:100,9421:1200,19004:110,19005:120,19006:275,19007:300,19008:550,19009:600,19010:880,19011:960,19012:1320,19013:1440,22103:2080,22104:2288,22105:2496",
@@ -110,13 +110,13 @@ function Buffet:Scan()
 		end
 	end
 
-	self:Edit("AutoHP", bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
-	self:Edit("AutoMP", bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+	self:Edit("AutoHP", self.db.macroHP, bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+	self:Edit("AutoMP", self.db.macroMP, bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
 	dirty = false
 end
 
 
-function Buffet:Edit(name, food, pot, stone, shift)
+function Buffet:Edit(name, substring, food, pot, stone, shift)
 	local macroid = GetMacroIndexByName(name)
 	if not macroid then return end
 
@@ -127,7 +127,7 @@ function Buffet:Edit(name, food, pot, stone, shift)
 
 	if pot and stone then body = body .. "\n/castsequence [combat,nomod] reset="..(stone == 22044 and "120/" or "").."combat item:"..stone..", item:"..pot end
 
-	EditMacro(macroid, name, 1, self.db.macro:gsub("%%MACRO%%", body), 1)
+	EditMacro(macroid, name, 1, substring:gsub("%%MACRO%%", body), 1)
 end
 
 
