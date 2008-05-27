@@ -125,7 +125,7 @@ function Buffet:Edit(name, food, pot, stone, shift)
 	if (pot and not stone) or (stone and not pot) then body = body .. "[combat] item:"..(pot or stone).."; " end
 	body = body .. (pot and stone and "[nocombat] " or "").."item:"..(food or "6948")
 
-	if pot and stone then body = body .. "\n/castsequence [combat,nomod] reset=combat item:"..stone..", item:"..pot end
+	if pot and stone then body = body .. "\n/castsequence [combat,nomod] reset="..(stone == 22044 and "120/" or "").."combat item:"..stone..", item:"..pot end
 
 	EditMacro(macroid, name, 1, self.db.macro:gsub("%%MACRO%%", body), 1)
 end
