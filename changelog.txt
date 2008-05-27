@@ -1,0 +1,46 @@
+2.4.2.12-Beta
+    Rescan on level up, there may be new items usable
+    Fix required level not being tested
+    Add more mana/heal items that are on shared cooldown with the stones
+
+2.4.2.11-Beta
+    Add [Black Coffee]
+
+2.4.1.10-Beta
+    Add [Star's Tears] to water
+    Add demonic rune to mana stones
+
+2.4.1.9-Beta
+    Fix stone+pot castsequence macro
+
+2.4.1.8-Beta
+    Reset castsequence when leaving combat
+    Fix typo with Naaru Rations
+
+2.4.1.7-Beta
+    Added Naaru Rations and Hot Buttered Trout
+    Self-cast them bandaids
+
+2.4.1.6-Beta
+    Add config and about panels, TOC metadata
+
+2.4.0.5-Beta
+    Add crystal potions (Ogri'la vendor items)
+    Add Holy Spring Water... a crappy potion, but a potion none the less
+
+2.3.3.4-Beta
+    Shorten macro a tad, make sure sequence doesn't fire when using a bandaid
+
+2.3.3.3-Beta
+    Add /castsequence for stone then pot if player has both
+    Added [Mad Alchemist's Potion]
+
+2.3.3.2-Alpha
+    Change how the macro is constructed so it will never use more than one item per click
+    Conjured Manna Biscuit was missing... the fuck?
+
+2.3.3.1-Alpha
+    Add missing water
+    Use the correct value when comparing items
+    Initial commit
+
