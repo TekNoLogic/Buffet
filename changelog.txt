@@ -1,3 +1,10 @@
+2.4.2.13-Beta
+    Make HP and MP macros use different custom texts
+    Add special case for multi-use mage gem
+    [Underspore Pod] should be considered conjured
+    Add [Enriched Terocone Juice]
+    Add ability to customize macro text on a per-char basis
+
 2.4.2.12-Beta
     Rescan on level up, there may be new items usable
     Fix required level not being tested
