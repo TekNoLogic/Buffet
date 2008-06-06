@@ -11,7 +11,8 @@ Buffet will always pick the smaller stack if equal-strength items are found.  Co
 
 Buffet does not yet support zone-specific items.
 
-*Visit "my site":http://www.tekkub.net/addons/Buffet for more info.<br>
-Please report all bugs and feature requests to my "Google Code":http://code.google.com/p/tekkub-wow/issues/list?can=1&q=addon:Buffet&sort=status+milestone&colspec=ID%20Type%20Status%20Addon%20Milestone%20Summary tracker<br>
-Please direct all feedback and questions to my "Google Groups":http://groups-beta.google.com/group/tekkub-wow mailinglist.*
+h2. Links
 
+<b>Visit "my site":http://www.tekkub.net/addons/Buffet for more info.<br>
+Please report all bugs and feature requests to my "Google Code":http://code.google.com/p/tekkub-wow/issues/list?can=1&q=addon:Buffet&sort=status+milestone&colspec=ID%20Type%20Status%20Addon%20Milestone%20Summary tracker<br>
+Please direct all feedback and questions to my "Google Groups":http://groups-beta.google.com/group/tekkub-wow mailinglist.</b>
