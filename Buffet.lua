@@ -46,7 +46,7 @@ function Buffet:Print(...) ChatFrame1:AddMessage(string.join(" ", "|cFF33FF99Buf
 
 
 function Buffet:ADDON_LOADED(event, addon)
-	if addon ~= "Buffet" then return end
+	if addon:lower() ~= "buffet" then return end
 
 	BuffetDB = setmetatable(BuffetDB or {}, {__index = defaults})
 	self.db = BuffetDB
