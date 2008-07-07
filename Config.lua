@@ -109,3 +109,14 @@ end)
 InterfaceOptions_AddCategory(frame)
 
 LibStub("tekKonfig-AboutPanel").new("Buffet", "Buffet")
+
+
+----------------------------------------
+--      Quicklaunch registration      --
+----------------------------------------
+
+LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Buffet", {
+	launcher = true,
+	icon = "Interface\\Icons\\INV_Misc_Food_DimSum",
+	OnClick = function() InterfaceOptionsFrame_OpenToFrame(frame) end,
+})

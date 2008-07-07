@@ -17,6 +17,8 @@ tekIDmemo.lua
 tekKonfigAboutPanel.lua
 tekKonfigHeading.lua
 tekKonfigButton.lua
+CallbackHandler-1.0.lua
+LibDataBroker-1.1\LibDataBroker-1.1.lua
 
 Buffet.lua
 Config.lua
