@@ -1,3 +1,7 @@
+2.4.2.14-Beta
+    Add LDB quicklaunch button
+    Make addon loaded check case-insensative
+
 2.4.2.13-Beta
     Make HP and MP macros use different custom texts
     Add special case for multi-use mage gem
