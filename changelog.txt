@@ -1,3 +1,6 @@
+2.4.2.15-Beta
+    Fix LDB embed
+
 2.4.2.14-Beta
     Add LDB quicklaunch button
     Make addon loaded check case-insensative
