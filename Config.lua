@@ -116,7 +116,7 @@ LibStub("tekKonfig-AboutPanel").new("Buffet", "Buffet")
 ----------------------------------------
 
 LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Buffet", {
-	launcher = true,
+	type = "launcher",
 	icon = "Interface\\Icons\\INV_Misc_Food_DimSum",
 	OnClick = function() InterfaceOptionsFrame_OpenToFrame(frame) end,
 })
