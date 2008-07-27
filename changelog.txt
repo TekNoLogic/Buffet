@@ -1,3 +1,6 @@
+2.4.3.16-Beta
+    Tweak launcher declaration to match the updated spec
+
 2.4.2.15-Beta
     Fix LDB embed
 
