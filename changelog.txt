@@ -1,3 +1,10 @@
+3.0.1.16-Beta
+    Wrath pots
+    Wrath bandaids
+    Wrath food and water
+    Add [Noth's Special Brew]
+    Tweak launcher declaration to match the updated spec
+
 2.4.2.15-Beta
     Fix LDB embed
 
