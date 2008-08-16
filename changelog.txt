@@ -1,3 +1,7 @@
+3.0.1.18-Beta
+    Update tekKonfig to live+beta version
+    DKs don't get cheese anymore it seems...
+
 3.0.1.17-Beta
     Embed update, whee!
 
