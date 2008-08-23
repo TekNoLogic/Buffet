@@ -1,14 +1,15 @@
 
-local lib, oldminor = LibStub:NewLibrary("tekKonfig-AboutPanel", 2)
+local lib, oldminor = LibStub:NewLibrary("tekKonfig-AboutPanel", 4)
 if not lib then return end
 
 
 function lib.new(parent, addonname)
 	local frame = CreateFrame("Frame", nil, UIParent)
-	frame.name, frame.parent, frame.addonname = "About", parent, addonname
+	frame.name, frame.parent, frame.addonname = parent and "About" or addonname, parent, addonname
 	frame:Hide()
 	frame:SetScript("OnShow", lib.OnShow)
 	InterfaceOptions_AddCategory(frame)
+	return frame
 end
 
 
@@ -69,7 +70,7 @@ function lib.OnShow(frame)
 
 	local title = frame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 	title:SetPoint("TOPLEFT", 16, -16)
-	title:SetText(frame.parent.." - About")
+	title:SetText((frame.parent or frame.addonname).." - About")
 
 	local subtitle = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 	subtitle:SetHeight(32)
@@ -109,4 +110,6 @@ function lib.OnShow(frame)
 			anchor = title
 		end
 	end
+
+	frame:SetScript("OnShow", nil)
 end
