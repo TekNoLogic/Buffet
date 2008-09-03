@@ -1,4 +1,6 @@
 
+local MAX_ACCOUNT_MACROS, MAX_CHARACTER_MACROS = IS_WRATH_BUILD and 36 or 18, 18
+
 local EDGEGAP, GAP = 16, 8
 local tekbutt = LibStub("tekKonfig-Button")
 
@@ -11,7 +13,7 @@ frame:SetScript("OnShow", function()
 
 	local function OnClick(self)
 		if InCombatLockdown() then Buffet:Print("Cannot create macros in combat.")
-		elseif GetNumMacros() >= 18 then Buffet:Print("All global macros in use.")
+		elseif GetNumMacros() >= MAX_ACCOUNT_MACROS then Buffet:Print("All global macros in use.")
 		else
 			CreateMacro(self.name, 1, "", 1)
 			Buffet:Scan()
