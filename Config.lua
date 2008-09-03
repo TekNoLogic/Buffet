@@ -12,22 +12,29 @@ frame:SetScript("OnShow", function()
 	local title, subtitle = LibStub("tekKonfig-Heading").new(frame, "Buffet", "This panel allows you to quickly create the base macros for Buffet to edit.  You can also set the macro text to be used.")
 
 	local function OnClick(self)
-		if InCombatLockdown() then Buffet:Print("Cannot create macros in combat.")
+		if InCombatLockdown() then
+			Buffet:Print("Cannot create macros in combat.")
+			return
+		end
+
+		local id = GetMacroIndexByName(self.name)
+		if id and id ~= 0 then PickupMacro(id)
 		elseif GetNumMacros() >= MAX_ACCOUNT_MACROS then Buffet:Print("All global macros in use.")
 		else
-			CreateMacro(self.name, 1, "", 1)
+			local id = CreateMacro(self.name, 1, "", 1)
 			Buffet:Scan()
+			PickupMacro(id)
 		end
 	end
 
 	local hpbutt = tekbutt.new(frame, "TOPLEFT", subtitle, "BOTTOMLEFT", -2, -GAP)
-	hpbutt:SetText("Create HP")
+	hpbutt:SetText("HP Macro")
 	hpbutt.tiptext = "Generate a global macro for food, bandages, health potions and health stones."
 	hpbutt.name = "AutoHP"
 	hpbutt:SetScript("OnClick", OnClick)
 
 	local mpbutt = tekbutt.new(frame, "TOPLEFT", hpbutt, "TOPRIGHT", GAP, 0)
-	mpbutt:SetText("Create MP")
+	mpbutt:SetText("MP Macro")
 	mpbutt.tiptext = "Generate a global macro for water, mana potions and mana stones."
 	mpbutt.name = "AutoMP"
 	mpbutt:SetScript("OnClick", OnClick)
@@ -97,15 +104,7 @@ frame:SetScript("OnShow", function()
 	mpeditbox:SetScript("OnEnter", mpbutt:GetScript("OnEnter"))
 	mpeditbox:SetScript("OnLeave", mpbutt:GetScript("OnLeave"))
 
-	local function Refresh(self)
-		if GetMacroIndexByName("AutoHP") == 0 then hpbutt:Enable() else hpbutt:Disable() end
-		if GetMacroIndexByName("AutoMP") == 0 then mpbutt:Enable() else mpbutt:Disable() end
-		self:RegisterEvent("UPDATE_MACROS")
-	end
-	frame:SetScript("OnEvent", Refresh)
-	frame:SetScript("OnShow", Refresh)
-	frame:SetScript("OnHide", function(self) self:UnregisterEvent("UPDATE_MACROS") end)
-	Refresh(frame)
+	frame:SetScript("OnShow", nil)
 end)
 
 InterfaceOptions_AddCategory(frame)
