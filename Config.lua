@@ -12,11 +12,6 @@ frame:SetScript("OnShow", function()
 	local title, subtitle = LibStub("tekKonfig-Heading").new(frame, "Buffet", "This panel allows you to quickly create the base macros for Buffet to edit.  You can also set the macro text to be used.")
 
 	local function OnClick(self)
-		if InCombatLockdown() then
-			Buffet:Print("Cannot create macros in combat.")
-			return
-		end
-
 		local id = GetMacroIndexByName(self.name)
 		if id and id ~= 0 then PickupMacro(id)
 		elseif GetNumMacros() >= MAX_ACCOUNT_MACROS then Buffet:Print("All global macros in use.")
@@ -32,12 +27,14 @@ frame:SetScript("OnShow", function()
 	hpbutt.tiptext = "Generate a global macro for food, bandages, health potions and health stones."
 	hpbutt.name = "AutoHP"
 	hpbutt:SetScript("OnClick", OnClick)
+	if InCombatLockdown() then hpbutt:Disable() end
 
 	local mpbutt = tekbutt.new(frame, "TOPLEFT", hpbutt, "TOPRIGHT", GAP, 0)
 	mpbutt:SetText("MP Macro")
 	mpbutt.tiptext = "Generate a global macro for water, mana potions and mana stones."
 	mpbutt.name = "AutoMP"
 	mpbutt:SetScript("OnClick", OnClick)
+	if InCombatLockdown() then mpbutt:Disable() end
 
 	local hpmacrolabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 	hpmacrolabel:SetText("HP Macro")
@@ -103,6 +100,13 @@ frame:SetScript("OnShow", function()
 	mpeditbox.tiptext = hpeditbox.tiptext
 	mpeditbox:SetScript("OnEnter", mpbutt:GetScript("OnEnter"))
 	mpeditbox:SetScript("OnLeave", mpbutt:GetScript("OnLeave"))
+
+	frame:SetScript("OnEvent", function(self, event)
+		if event == "PLAYER_REGEN_DISABLED" then hpbutt:Disable() mpbutt:Disable()
+		else hpbutt:Enable() mpbutt:Enable() end
+	end)
+	frame:RegisterEvent("PLAYER_REGEN_ENABLED")
+	frame:RegisterEvent("PLAYER_REGEN_DISABLED")
 
 	frame:SetScript("OnShow", nil)
 end)
