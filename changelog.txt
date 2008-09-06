@@ -1,3 +1,7 @@
+3.0.1.20-Beta
+    Seems we get more global macros in Wrath
+    Buttons now pickup the macro after creating it, or just pick up if it exists
+
 3.0.1.19-Beta
     Embed update
 
