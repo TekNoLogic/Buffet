@@ -1,3 +1,6 @@
+3.0.1.21-Beta
+    STRUDEL!
+
 3.0.1.20-Beta
     Seems we get more global macros in Wrath
     Buttons now pickup the macro after creating it, or just pick up if it exists
