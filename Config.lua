@@ -1,3 +1,4 @@
+if not IS_WRATH_BUILD then InterfaceOptionsFrame_OpenToCategory = InterfaceOptionsFrame_OpenToFrame end
 
 local MAX_ACCOUNT_MACROS, MAX_CHARACTER_MACROS = IS_WRATH_BUILD and 36 or 18, 18
 
@@ -5,7 +6,7 @@ local EDGEGAP, GAP = 16, 8
 local tekbutt = LibStub("tekKonfig-Button")
 
 
-local frame = CreateFrame("Frame", nil, UIParent)
+local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 frame.name = "Buffet"
 frame:Hide()
 frame:SetScript("OnShow", function()
@@ -123,5 +124,5 @@ LibStub("tekKonfig-AboutPanel").new("Buffet", "Buffet")
 LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Buffet", {
 	type = "launcher",
 	icon = "Interface\\Icons\\INV_Misc_Food_DimSum",
-	OnClick = function() InterfaceOptionsFrame_OpenToFrame(frame) end,
+	OnClick = function() InterfaceOptionsFrame_OpenToCategory(frame) end,
 })
