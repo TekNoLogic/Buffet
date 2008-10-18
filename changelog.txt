@@ -1,3 +1,8 @@
+3.0.2.22-Beta
+    Don't make macros char-specific (3.0 broke this)
+    Update for wrath build 8962 config panel breakage
+    Embed update
+
 3.0.1.21-Beta
     STRUDEL!
 
