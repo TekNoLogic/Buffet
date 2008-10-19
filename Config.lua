@@ -1,6 +1,5 @@
-if not IS_WRATH_BUILD then InterfaceOptionsFrame_OpenToCategory = InterfaceOptionsFrame_OpenToFrame end
 
-local MAX_ACCOUNT_MACROS, MAX_CHARACTER_MACROS = IS_WRATH_BUILD and 36 or 18, 18
+local MAX_ACCOUNT_MACROS, MAX_CHARACTER_MACROS = 36, 18
 
 local EDGEGAP, GAP = 16, 8
 local tekbutt = LibStub("tekKonfig-Button")
