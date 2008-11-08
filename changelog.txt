@@ -1,3 +1,8 @@
+3.0.3.23-Beta
+    Those argent guys are a bunch of potheads
+    Embed update
+    Remove 2.4.3 compat
+
 3.0.2.22-Beta
     Don't make macros char-specific (3.0 broke this)
     Update for wrath build 8962 config panel breakage
