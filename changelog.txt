@@ -1,3 +1,8 @@
+3.0.3.25-Beta
+    Injizzectors
+    New food
+    Add "endless" potions
+
 3.0.3.24-Beta
     More conjables
     PIE!
