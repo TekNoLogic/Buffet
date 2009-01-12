@@ -1,3 +1,6 @@
+3.0.3.26-Beta
+    Updated food and water lists, should include all non-buff food and water currently on wowhead
+
 3.0.3.25-Beta
     Injizzectors
     New food
