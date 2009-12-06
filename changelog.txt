@@ -1,3 +1,6 @@
+3.2.0.30-Release
+    Harvest Nectards
+
 3.1.0.29-Release
     Fix runic mana's value
 
