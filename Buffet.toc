@@ -1,4 +1,4 @@
-## Interface: 30200
+## Interface: 40000
 
 ## Title: Buffet
 ## Notes: Food/water macro generator
