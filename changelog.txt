@@ -1,3 +1,6 @@
+4.0.0.32-Beta
+    Cat food (and water and pots and bandaids and...)
+
 4.0.0.31-Release
     New 4.0 items
 
