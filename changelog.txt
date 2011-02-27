@@ -1,3 +1,7 @@
+4.0.0.33-Beta
+    Missed a food
+    Move data strings off to their own file for easier management and merging
+
 4.0.0.32-Beta
     Cat food (and water and pots and bandaids and...)
 
