@@ -112,6 +112,10 @@ ns.hppot = [[
 32947:2000
 ]]
 
+if select(2, UnitClass("player")) == "ROGUE" then
+	ns.hppot = ns.hppot .. "63300:10000\n"
+end
+
 ns.mppot = [[
 57192:10000
 57193:8000
