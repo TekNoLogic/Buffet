@@ -1,3 +1,7 @@
+4.1.0.35-Beta
+    Add rogue pot
+    Fix conj. mana cake.
+
 4.1.0.34-Release
     Tagging stable version
 
