@@ -5,6 +5,8 @@ local EDGEGAP, GAP = 16, 8
 local tekbutt = LibStub("tekKonfig-Button")
 
 
+if AddonLoader and AddonLoader.RemoveInterfaceOptions then AddonLoader:RemoveInterfaceOptions("Buffet") end
+
 local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 frame.name = "Buffet"
 frame:Hide()

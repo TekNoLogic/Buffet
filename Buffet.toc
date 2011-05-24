@@ -6,11 +6,13 @@
 ## Version: Alpha
 ## X-Website: http://www.tekkub.net/
 ## X-Email: tekkub-wow@googlegroups.com
+## X-Icon: Interface\Icons\INV_Misc_Food_DimSum
 
 ## SavedVariablesPerCharacter: BuffetDB
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
+## X-LoadOn-InterfaceOptions: Buffet
 
 LibStub.lua
 tekIDmemo.lua
