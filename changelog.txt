@@ -1,3 +1,7 @@
+4.3.0.36-Beta
+    Fixed for 4.3 macro icon change. (Thanks Adirelle)
+    Add support for AddonLoader's LoadOn-InterfaceOptions thingy
+
 4.1.0.35-Beta
     Add rogue pot
     Fix conj. mana cake.
