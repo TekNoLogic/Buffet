@@ -1,3 +1,8 @@
+5.0.1.39-Beta
+    Update database
+    Herbalism HP and MP pots (thanks leks0d)
+    New bandages (thanks freebaser)
+
 5.0.1.38-Beta
     Add a few missing MoP food/water items (thanks StephenClouse)
 
