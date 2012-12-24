@@ -1,3 +1,6 @@
+5.1.0.40-Beta
+    Panda pots
+
 5.0.1.39-Beta
     Update database
     Herbalism HP and MP pots (thanks leks0d)
