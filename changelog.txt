@@ -1,3 +1,6 @@
+5.1.0.41-Beta
+    Fix macro generator
+
 5.1.0.40-Beta
     Panda pots
 
