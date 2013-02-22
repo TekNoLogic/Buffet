@@ -103,8 +103,12 @@ function Buffet:Scan()
 		end
 	end
 
-	self:Edit("AutoHP", self.db.macroHP, bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
-	self:Edit("AutoMP", self.db.macroMP, bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+	local food = bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id
+	local water = bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id
+
+	self:Edit("AutoHP", self.db.macroHP, food, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+	self:Edit("AutoMP", self.db.macroMP, water, bests.mppot.id, bests.mstone.id)
+
 	dirty = false
 end
 
