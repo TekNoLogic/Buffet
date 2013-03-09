@@ -1,3 +1,6 @@
+5.2.0.42-Beta
+    Add Winter Veil Eggnog
+
 5.1.0.41-Beta
     Fix macro generator
 
