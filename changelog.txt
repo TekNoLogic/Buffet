@@ -1,3 +1,10 @@
+6.0.0.43-Beta
+    New wod consumables
+    Adjust HP/MP values
+    Remove items that are no longer obtainable
+    Healthstones now share health potion CD
+    Mage-conjured foods are 100% restore now
+
 5.2.0.42-Beta
     Add Winter Veil Eggnog
 
@@ -159,4 +166,3 @@
     Add missing water
     Use the correct value when comparing items
     Initial commit
-
