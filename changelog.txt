@@ -1,3 +1,6 @@
+6.0.0.45-Beta
+    That item isn't a food ><
+
 6.0.0.44-Beta
     Missed a rejuv potion
 
