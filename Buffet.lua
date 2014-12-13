@@ -76,7 +76,7 @@ function Buffet:Scan()
 			local id = link and ids[link]
 			local reqlvl = link and select(5, GetItemInfo(link)) or 0
 			local startTime, duration, isEnabled = GetContainerItemCooldown(bag, slot)
-			if id and allitems[id] and reqlvl <= mylevel and (isEnabled ~= 1 or duration < 2) then
+			if id and allitems[id] and reqlvl <= mylevel and (isEnabled ~= 1 or duration < 2) and IsUsableItem(id) then
 				local _, stack = GetContainerItemInfo(bag,slot)
 				for set,setitems in pairs(items) do
 					local thisbest, val = bests[set], setitems[id]
