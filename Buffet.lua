@@ -37,7 +37,7 @@ function Buffet:PLAYER_LOGIN()
 	self:RegisterEvent("PLAYER_LOGOUT")
 
 	self:RegisterEvent("PLAYER_REGEN_ENABLED")
-	self:RegisterEvent("BAG_UPDATE")
+	self:RegisterEvent("BAG_UPDATE_DELAYED")
 	self:RegisterEvent("PLAYER_LEVEL_UP")
 
 	self:Scan()
@@ -57,11 +57,11 @@ function Buffet:PLAYER_REGEN_ENABLED()
 end
 
 
-function Buffet:BAG_UPDATE()
+function Buffet:BAG_UPDATE_DELAYED()
 	dirty = true
 	if not InCombatLockdown() then self:Scan() end
 end
-Buffet.PLAYER_LEVEL_UP = Buffet.BAG_UPDATE
+Buffet.PLAYER_LEVEL_UP = Buffet.BAG_UPDATE_DELAYED
 
 
 function Buffet:Scan()
