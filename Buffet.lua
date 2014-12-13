@@ -38,6 +38,7 @@ function Buffet:PLAYER_LOGIN()
 
 	self:RegisterEvent("PLAYER_REGEN_ENABLED")
 	self:RegisterEvent("BAG_UPDATE")
+	self:RegisterEvent("BAG_UPDATE_COOLDOWN")
 	self:RegisterEvent("PLAYER_LEVEL_UP")
 
 	self:Scan()
@@ -62,6 +63,7 @@ function Buffet:BAG_UPDATE()
 	if not InCombatLockdown() then self:Scan() end
 end
 Buffet.PLAYER_LEVEL_UP = Buffet.BAG_UPDATE
+Buffet.BAG_UPDATE_COOLDOWN = Buffet.BAG_UPDATE
 
 
 function Buffet:Scan()
@@ -73,7 +75,8 @@ function Buffet:Scan()
 			local link = GetContainerItemLink(bag, slot)
 			local id = link and ids[link]
 			local reqlvl = link and select(5, GetItemInfo(link)) or 0
-			if id and allitems[id] and reqlvl <= mylevel then
+			local startTime, duration, isEnabled = GetContainerItemCooldown(bag, slot)
+			if id and allitems[id] and reqlvl <= mylevel and (isEnabled ~= 1 or duration < 2) then
 				local _, stack = GetContainerItemInfo(bag,slot)
 				for set,setitems in pairs(items) do
 					local thisbest, val = bests[set], setitems[id]
