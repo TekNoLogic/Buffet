@@ -1,5 +1,4 @@
-## Interface: 60000
-
+## Interface: 70000
 ## Title: Buffet
 ## Notes: Food/water macro generator
 ## Author: Tekkub Stoutwrithe
