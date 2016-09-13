@@ -2,9 +2,6 @@
 ## Title: Buffet
 ## Notes: Food/water macro generator
 ## Author: Tekkub Stoutwrithe
-## Version: Alpha
-## X-Website: http://www.tekkub.net/
-## X-Email: tekkub-wow@googlegroups.com
 ## X-Icon: Interface\Icons\INV_Misc_Food_DimSum
 
 ## SavedVariablesPerCharacter: BuffetDB
