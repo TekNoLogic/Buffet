@@ -1,3 +1,9 @@
+### 7.1.0.47-Beta
+
+* Some of the food values in legion were increased
+* Add rank 2 Nomi failures
+
+
 ### 7.0.0.46-Beta
 
 * Legion database update (thanks @Grimsbain)
